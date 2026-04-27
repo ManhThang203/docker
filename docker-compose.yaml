@@ -1,0 +1,36 @@
+services:
+  blog-ui:
+    build: ./blog-ui
+    ports:
+      - 3000:80
+  blog-admin:
+    build: ./blog-admin
+    ports:
+      - 3001:80
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - D:/Dự án/Blog/blog-admin:/app
+      - /app/node_modules
+
+  blog-api:
+    build: ./blog-api
+    ports:
+      - 4000:4000
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - D:/Dự án/Blog/blog-api:/app
+      - /app/node_modules
+
+  app-db:
+    image: mysql:oraclelinux9
+    ports:
+      - 23306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: blog_dev
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    volumes:
+      - D:/databases/Blog-db/data:/var/lib/mysql
