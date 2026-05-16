@@ -1,0 +1,7 @@
+# Environment variables (chứa secrets)
+.env
+.env.local
+.env.*.local
+
+# Giữ lại file mẫu
+!.env.example
